@@ -1,0 +1,88 @@
+﻿<Page
+    x:Class="BastBarcode.RecentPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BastBarcode"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <Style x:Key="ListViewItemContainerStyle1" TargetType="ListViewItem">
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="Background" Value="{ThemeResource ListViewItemBackground}"/>
+            <Setter Property="Foreground" Value="{ThemeResource ListViewItemForeground}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource SystemAccentColorLight3}"/>
+            <Setter Property="BorderThickness" Value="0.5"/>
+            <Setter Property="TabNavigation" Value="Local"/>
+            <Setter Property="IsHoldingEnabled" Value="True"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="MinWidth" Value="520"/>
+            <Setter Property="MinHeight" Value="260"/>
+            <Setter Property="AllowDrop" Value="False"/>
+            <Setter Property="UseSystemFocusVisuals" Value="{StaticResource UseSystemFocusVisuals}"/>
+            <Setter Property="FocusVisualMargin" Value="0"/>
+        </Style>
+        <ItemsPanelTemplate x:Key="ListViewItemsPanel1">
+            <ItemsWrapGrid Orientation="Horizontal" HorizontalAlignment="Center" />
+        </ItemsPanelTemplate>
+    </Page.Resources>
+
+    <Grid>
+        <ScrollViewer HorizontalAlignment="Stretch" VerticalAlignment="Stretch" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"  BorderBrush="{ThemeResource SystemAccentColor}" BorderThickness="0,0.5,0,0">
+            <ListView ItemsPanel="{StaticResource ListViewItemsPanel1}" ItemContainerStyle="{StaticResource ListViewItemContainerStyle1}" x:Name="List_Main" SelectionMode="None" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" x:Name="Grid_Main">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Right">
+                                <Button Click="Btn_Edit_Click" x:Name="Btn_Edit" Padding="5" Opacity="0.8">
+                                    <SymbolIcon Symbol="Edit"/>
+                                </Button>
+                                <Button Click="Btn_Delete_Click" x:Name="Btn_Delete" Margin="5,0,0,0" Padding="5" Opacity="0.8">
+                                    <SymbolIcon Symbol="Delete"/>
+                                </Button>
+                            </StackPanel>
+                            <StackPanel DataContext="{Binding }" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <!--Printing TIme-->
+                                <TextBlock Typography.Capitals="AllSmallCaps" FontSize="20" HorizontalAlignment="Center" Text="{Binding PrintingTime}"/>
+                                <!--Business Name-->
+                                <TextBlock Typography.Capitals="AllSmallCaps" FontSize="50" FontWeight="Bold" HorizontalAlignment="Center" Text="{Binding BusinessName}"/>
+                                <!--Product Name-->
+                                <TextBlock Typography.Capitals="AllSmallCaps" FontSize="55" HorizontalAlignment="Center" Text="{Binding ProductName}"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                        <ColumnDefinition Width="1*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <!--Product Color-->
+                                    <TextBlock HorizontalAlignment="Left" Grid.Column="0" Typography.Capitals="AllSmallCaps" FontSize="30" FontWeight="Bold" Text="{Binding ProductColor}"/>
+                                    <!--Product Size-->
+                                    <TextBlock HorizontalAlignment="Center" Grid.Column="1" FontSize="30" FontWeight="Bold" Text="{Binding ProductSize}"/>
+                                    <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <!--Product Old Price-->
+                                        <TextBlock Typography.Capitals="AllSmallCaps" VerticalAlignment="Top" FontSize="30" HorizontalAlignment="Center" Text="RS."/>
+                                        <TextBlock VerticalAlignment="Top" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Text="{Binding ProductNewPrice}"/>
+                                        <!--Product New Price-->
+                                        <TextBlock FontSize="18" VerticalAlignment="Bottom" FontWeight="Bold" TextDecorations="Strikethrough" HorizontalAlignment="Center" Text="{Binding ProductOldPrice}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
+        <Button Margin="10" Padding="5" Click="Btn_AboutUs" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Made By"/>
+                <TextBlock Margin="3,0,0,0" FontWeight="Bold" Text="Abu Bakar"/>
+            </StackPanel>
+        </Button>
+    </Grid>
+</Page>

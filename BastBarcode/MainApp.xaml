@@ -1,0 +1,36 @@
+﻿<Page
+    x:Class="BastBarcode.MainApp"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BastBarcode"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <muxc:TabView x:Name="TabView_Main" TabWidthMode="Equal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsAddTabButtonVisible="False" CanReorderTabs="False" CanDragTabs="False" AllowDropTabs="False">
+            <muxc:TabView.TabItems>
+                <muxc:TabViewItem Header="Print receipts" IsClosable="False">
+                    <muxc:TabViewItem.IconSource>
+                        <muxc:SymbolIconSource Symbol="Print" />
+                    </muxc:TabViewItem.IconSource>
+                    <local:PrintingPage />
+                </muxc:TabViewItem>
+                <muxc:TabViewItem Header="Saved receipts" IsClosable="False">
+                    <muxc:TabViewItem.IconSource>
+                        <muxc:SymbolIconSource Symbol="Save" />
+                    </muxc:TabViewItem.IconSource>
+                    <local:RecentPage />
+                </muxc:TabViewItem>
+                <muxc:TabViewItem Header="Settings" IsClosable="False">
+                    <muxc:TabViewItem.IconSource>
+                        <muxc:SymbolIconSource Symbol="Setting" />
+                    </muxc:TabViewItem.IconSource>
+                    <local:SettingPage />
+                </muxc:TabViewItem>
+            </muxc:TabView.TabItems>
+        </muxc:TabView>
+    </Grid>
+</Page>

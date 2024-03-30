@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Verdana, Geneva, sans-serif;
+        }
+
+        .Section {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .BusinessName {
+            display: block;
+            text-align: center;
+            font-size: 70px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .ProductName_Barcode {
+            width: 100%;
+            height: 150px;
+        }
+
+        .ProductName {
+            font-size: 90px;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .SectionFooter {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ProductColor {
+            font-size: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .ProductSize {
+            font-size: 80px;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: auto;
+        }
+
+        .PriceSection {
+            display: flex;
+        }
+
+        .ProductOldPrice {
+            position: relative;
+            top: -10px;
+            font-size: 40px;
+            text-transform: uppercase;
+            font-weight: normal;
+            text-decoration: line-through;
+        }
+
+        .ProductNewPrice {
+            font-size: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    </style>
+    <div class="Section">
+        <h1 class="BusinessName">Royal Tag</h1><img class="ProductName_Barcode" src="barcode.png">
+        <h1 class="ProductName">839-33kh9-8080</h1>
+        <div class="SectionFooter">
+            <h1 class="ProductColor">BLUE</h1>
+            <h1 class="ProductSize">36</h1>
+            <div class="PriceSection">
+                <h1 class="ProductNewPrice">RS.1000</h1>
+                <h1 class="ProductOldPrice">1500</h1>
+            </div>
+        </div>
+    </div>
+    <script>
+        window.print();
+        window.onafterprint = () => {
+            window.close()
+        };
+    </script>
+</body>
+
+</html>
+
+    <!-- 
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Document</title></head><body><style>*{margin: 0;padding: 0;font-family: Arial,Verdana, Geneva, sans-serif;} .Section{display: flex;width: 100%;height: 100vh;flex-direction: column;} .BusinessName{display: block;text-align: center;font-size: 70px;font-weight: bold;text-transform: uppercase;} .ProductName_Barcode{width: 100%;height: 150px;} .ProductName{font-size: 90px;font-weight: bold;text-align: center;text-transform: uppercase;} .SectionFooter{display: flex;align-items: center;justify-content: center;} .ProductColor{font-size: 50px;font-weight: bold;text-transform: uppercase;} .ProductSize{font-size: 80px;font-weight: bold;text-transform: uppercase;margin: auto;} .PriceSection{display: flex;} .ProductOldPrice{position: relative;top: -10px;font-size: 40px;text-transform: uppercase;font-weight: normal;text-decoration: line-through;} .ProductNewPrice{font-size: 50px;font-weight: bold;text-transform: uppercase;}</style>
+    <div class="Section"><h1 class="BusinessName">Royal Tag</h1><img class="ProductName_Barcode" src="barcode.png"><h1 class="ProductName">839-33kh9-8080</h1><div class="SectionFooter"><h1 class="ProductColor">BLUE</h1><h1 class="ProductSize">36</h1><div class="PriceSection"><h1 class="ProductNewPrice">RS.1000</h1><h1 class="ProductOldPrice">1500</h1></div></div></div>
+    <script>window.print();window.onafterprint = ()=>{window.close()}; </script></body></html>
+
+     -->

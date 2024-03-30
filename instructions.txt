@@ -1,0 +1,5 @@
+1- download and install printer driver for TSC-TE200 (particular for my client)
+2- goto "window settings/printers and scanners/ tsc te200/ printing prefernces"
+3- In "Page Setup" tab, add new "Stock", give it a name and set its width 2 inches and height to 1 inches
+4- Change orientation to Landscape
+5- Apply settings

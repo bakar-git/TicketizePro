@@ -1,0 +1,145 @@
+﻿<Page
+    x:Class="BastBarcode.PrintingPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:BastBarcode"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="SectionBorder" Color="{ThemeResource SystemAccentColorDark3}"/>
+                    <SolidColorBrush x:Key="ItmBg" Color="{ThemeResource SystemAccentColorDark1}"/>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="SectionBorder" Color="{ThemeResource SystemAccentColorLight3}"/>
+                    <SolidColorBrush x:Key="ItmBg" Color="{ThemeResource SystemAccentColorLight1}"/>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid DataContext="{x:Bind Dtls}" x:Name="Grid_Main" BorderBrush="{ThemeResource SectionBorder}" BorderThickness="0,0.5,0,0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.9*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="0.9*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+            <local:ArrayToStringConverter x:Key="ArrayToString"/>
+        </Grid.Resources>
+        <Border Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" Visibility="Visible" x:Name="Bdr_Form" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" BorderBrush="{ThemeResource SectionBorder}" BorderThickness="0,5,0,0" CornerRadius="5" Padding="10">
+            <ScrollViewer>
+                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <TextBlock FontSize="11" Text="Business Name*" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TxtBx_BusinessName" PlaceholderText="Business Name" Text="{Binding BusinessName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,0,0,10" Padding="9"/>
+                    <TextBlock FontSize="11" Text="Product Name*" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TxtBx_PName" PlaceholderText="Product Name" Text="{Binding ProductName, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,0,0,10" Padding="9"/>
+                    <TextBlock FontSize="11" Text="Product Color*" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TxtBx_PColor" PlaceholderText="Product Color" Text="{Binding ProductColor, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,0,0,10" Padding="9"/>
+                    <TextBlock FontSize="11" Text="Product Size*" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TxtBx_PSize" PlaceholderText="Product Size" Text="{Binding ProductSizeList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource ArrayToString}}" HorizontalAlignment="Stretch" Margin="0,0,0,10" Padding="9"/>
+                    <TextBlock FontSize="11" Text="Product Old Price" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TxtBx_POldPrice" PlaceholderText="Product Old Price" Text="{Binding ProductOldPrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,0,0,10" Padding="9"/>
+                    <TextBlock FontSize="11" Text="Product New Price*" Margin="0,0,0,5"/>
+                    <TextBox x:Name="TxtBx_PNewPrice" PlaceholderText="Product New Price" Text="{Binding ProductNewPrice, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" HorizontalAlignment="Stretch" Margin="0,0,0,10" Padding="9"/>
+                    <Button Style="{StaticResource ButtonRevealStyle}" Click="Btn_Next_Click" x:Name="Btn_Next" Content="Preview" HorizontalAlignment="Stretch" Margin="0,10" Padding="25,10,25,10"/>
+                    <Grid x:Name="Grid_TwoBtn1" Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Style="{StaticResource AccentButtonStyle}" Click="Btn_Print_Click" Margin="0,0,10,0" Content="Print" HorizontalAlignment="Stretch" Padding="25,10,25,10"/>
+                        <Button Grid.Column="1" Style="{StaticResource AccentButtonStyle}" Click="Btn_Save_Click" Margin="10,0,0,0" Content="Save" HorizontalAlignment="Stretch" Padding="25,10,25,10"/>
+                    </Grid>
+                    <Button x:Name="Btn_Print1" Style="{StaticResource AccentButtonStyle}" Click="Btn_PrintSave_Click" Content="Print" HorizontalAlignment="Stretch" Padding="25,10,25,10"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <Border Background="{ThemeResource AcrylicInAppFillColorDefaultBrush}" Visibility="Collapsed" x:Name="Bdr_FormConfirm" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center" BorderBrush="{ThemeResource SectionBorder}" BorderThickness="0,5,0,0" CornerRadius="5" Padding="10">
+            <ScrollViewer>
+                <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1.3*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="35"/>
+                            <RowDefinition Height="35"/>
+                        </Grid.RowDefinitions>
+                        <!--Business Name-->
+                        <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="0" TextWrapping="WrapWholeWords" FontWeight="Bold" Text="Business Name : " HorizontalAlignment="Left"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="0" Grid.Column="1" TextWrapping="WrapWholeWords" Text="{Binding BusinessName}" HorizontalAlignment="Left"/>
+                        <!--Product Name-->
+                        <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="0" TextWrapping="WrapWholeWords" FontWeight="Bold" Text="Product Name : " HorizontalAlignment="Left"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" TextWrapping="WrapWholeWords" Text="{Binding ProductName}" HorizontalAlignment="Left"/>
+                        <!--Product Color-->
+                        <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" TextWrapping="WrapWholeWords" FontWeight="Bold" Text="Product Color : " HorizontalAlignment="Left"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="2" Grid.Column="1" TextWrapping="WrapWholeWords" Text="{Binding ProductColor}" HorizontalAlignment="Left"/>
+                        <!--Product Size-->
+                        <TextBlock VerticalAlignment="Center" Grid.Row="3" Grid.Column="0" TextWrapping="WrapWholeWords" FontWeight="Bold" Text="Product Size : " HorizontalAlignment="Left"/>
+                        <ScrollViewer VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Grid.Row="3" Grid.Column="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+                            <ListView SelectionMode="None" VerticalAlignment="Stretch" ItemsSource="{Binding ProductSizeList}" HorizontalAlignment="Stretch">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="Background" Value="#00000000"/>
+                                        <Setter Property="Padding" Value="0"/>
+                                        <Setter Property="MinWidth" Value="30"/>
+                                        <Setter Property="VerticalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                        <Setter Property="Margin" Value="2, 0"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <ItemsStackPanel Orientation="Horizontal" VerticalAlignment="Center" />
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border CornerRadius="5" Background="{ThemeResource ItmBg}" Padding="5">
+                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0" Text="{Binding }"/>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </ScrollViewer>
+                        <!--Product Old Price-->
+                        <TextBlock VerticalAlignment="Center" Grid.Row="4" Grid.Column="0" TextWrapping="WrapWholeWords" FontWeight="Bold" Text="Product Old Price : " HorizontalAlignment="Left"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="4" Grid.Column="1" TextWrapping="WrapWholeWords" Text="{Binding ProductOldPrice}" HorizontalAlignment="Left"/>
+                        <!--Product New Price-->
+                        <TextBlock VerticalAlignment="Center" Grid.Row="5" Grid.Column="0" TextWrapping="WrapWholeWords" FontWeight="Bold" Text="Product New Price : " HorizontalAlignment="Left"/>
+                        <TextBlock VerticalAlignment="Center" Grid.Row="5" Grid.Column="1" TextWrapping="WrapWholeWords" Text="{Binding ProductNewPrice}" HorizontalAlignment="Left"/>
+                    </Grid>
+                    <!--<Image HorizontalAlignment="Stretch" Height="150" x:Name="Img_Barcode" />-->
+                    <Button Style="{StaticResource ButtonRevealStyle}" Click="Btn_Back_Click" x:Name="Btn_Back" Content="Edit" HorizontalAlignment="Stretch" Margin="0,10" Padding="25,10,25,10"/>
+                    <Grid x:Name="Grid_TwoBtn2" Margin="0,0,0,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Style="{StaticResource AccentButtonStyle}" Click="Btn_Print_Click" Margin="0,0,10,0" Content="Print" HorizontalAlignment="Stretch" Padding="25,10,25,10"/>
+                        <Button Grid.Column="1" Style="{StaticResource AccentButtonStyle}" Click="Btn_Save_Click" Margin="10,0,0,0" Content="Save" HorizontalAlignment="Stretch" Padding="25,10,25,10"/>
+                    </Grid>
+                    <Button x:Name="Btn_Print2" Style="{StaticResource AccentButtonStyle}" Click="Btn_PrintSave_Click" Content="Print" HorizontalAlignment="Stretch" Padding="25,10,25,10"/>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <Button Margin="10" Padding="5" Click="Btn_AboutUs" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Made By"/>
+                <TextBlock Margin="3,0,0,0" FontWeight="Bold" Text="Abu Bakar"/>
+            </StackPanel>
+        </Button>
+    </Grid>
+</Page>
