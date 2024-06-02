@@ -9,6 +9,7 @@ Export-PfxCertificate -Cert "Cert:\CurrentUser\My\$($cert.Thumbprint)" -FilePath
 
 # 2- Cerrtificate file will be avlbl in D:\bakar.pfx
 # 3- Sign the app with this cert
+# 4- When installing app, first install certificate as a root certificate in Local Machine
 
 --------------------------------------------------------------------------------------------------
 --------------------------------------------------------------------------------------------------
