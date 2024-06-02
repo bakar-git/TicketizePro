@@ -23,3 +23,4 @@ Export-PfxCertificate -Cert "Cert:\CurrentUser\My\$($cert.Thumbprint)" -FilePath
 3- In "Page Setup" tab, add new "Stock", give it a name and set its width 2 inches and height to 1 inches
 4- Change orientation to Landscape
 5- Apply settings
+6- In printing settings of browser, set size to 20
