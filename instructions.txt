@@ -1,17 +1,11 @@
 # 1 - To handle cretificate issue, run following certificate with elevated permission:
-# Define the DNS name and PFX file path
-$dnsName = "YourDomainName"
-$pfxPath = "D:\bakar.pfx"
-$password = "bakar"
 
-# Create the self-signed certificate
-$cert = New-SelfSignedCertificate -DnsName $dnsName -CertStoreLocation "cert:\LocalMachine\My" -NotAfter (Get-Date).AddYears(10)
 
-# Get the thumbprint of the created certificate
-$thumbprint = $cert.Thumbprint
+$subject = "CN=bakar, O=bakar, C=PK"
+$cert = New-SelfSignedCertificate -Type Custom -Subject $subject -KeyUsage DigitalSignature -FriendlyName "YourAppCert" -CertStoreLocation "Cert:\CurrentUser\My" -NotAfter (Get-Date).AddYears(10) -TextExtension @("2.5.29.37={text}1.3.6.1.5.5.7.3.3", "2.5.29.19={text}")
+$password = ConvertTo-SecureString -String "bakar" -Force -AsPlainText
+Export-PfxCertificate -Cert "Cert:\CurrentUser\My\$($cert.Thumbprint)" -FilePath "D:\bakar.pfx" -Password $password
 
-# Export the certificate to a PFX file using CertUtil
-Start-Process -NoNewWindow -FilePath "certutil.exe" -ArgumentList "-exportPFX", "-p", $password, $thumbprint, $pfxPath -Wait
 
 # 2- Cerrtificate file will be avlbl in D:\bakar.pfx
 # 3- Sign the app with this cert
